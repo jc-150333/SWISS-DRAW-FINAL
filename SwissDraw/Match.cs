@@ -27,8 +27,6 @@ namespace SwissDraw
 
         public static Match[] MakeMatch(Dictionary<int, Person> persons, Match[] results)
         {
-            /*try
-            {*/
             // personsのkeyのみ取り出す
             int[] keys = GetKeyArray(persons);
 
@@ -45,13 +43,6 @@ namespace SwissDraw
             }
 
             return matches;
-            /*}
-            catch (NullReferenceException e)
-            {
-                Console.WriteLine(e);
-
-                return results;
-            }*/
         }
 
         // 「対戦していない」「同じチームじゃない」「勝ち数が同じ」で対戦
@@ -77,6 +68,7 @@ namespace SwissDraw
             }
             return matches;
         }
+
         // 「対戦していない」「同じチームじゃない」で対戦
         public static Match[] MakeMatch2(int matchCount, int[][] SplittedKeys, Dictionary<int, Person> persons, Match[] results)
         {
@@ -199,53 +191,9 @@ namespace SwissDraw
                     if (m != 1000)
                         return m;
                 }
-                /*
-                foreach(Match key2 in matches)
-                {
-                    if(key != key2.person1)
-                    {
-                        if(key != key2.person2)
-                        {
-                            if (key <= m)
-                            {
-                                m = key;
-                            }
-                        }
-                    }
-                }
-                */
+                
             }
-
             return m;
-
-            //throw new NotImplementedException();
-        }
-
-        //使われてないメソッド
-        public static bool NotUse(int key2, Match[] matches)
-        {
-            bool b = false;
-
-            foreach (Match mkey in matches)
-            {
-                if (key2 != mkey.person1)
-                {
-                    if (key2 != mkey.person2)
-                    {
-                        b = true;
-                    }
-                    else
-                    {
-                        b = false;
-                    }
-                }
-                else
-                {
-                    b = false;
-                }
-            }
-
-            return b;
         }
 
         // 同じグループか調べる（終了）
@@ -254,27 +202,6 @@ namespace SwissDraw
             String iTeam = persons[i].PersonGroup;
             String jTeam = persons[j].PersonGroup;
             return iTeam.Equals(jTeam);
-        }
-
-        //対戦していないメソッド
-        public static bool NotVersus(int minKey, int key, Match matches)
-        {
-            if (matches.person1 == minKey)
-            {
-                if (matches.person2 == key)
-                {
-                    return true;
-                }
-            }
-            if (matches.person2 == minKey)
-            {
-                if (matches.person1 == key)
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         //勝ち数が同じ人のIDをまとめる（終了）
@@ -308,17 +235,6 @@ namespace SwissDraw
             {
 
                 split[x] = makePersonArray(m - x, winCountDic);
-                /*
-                int v = 0;
-                foreach (int i in winCountDic.Keys)
-                {
-                    if(winCountDic[i] == x)
-                    {
-                        split[x][v] = winCountDic[i];
-                        v++;
-                    }
-                }
-                */
             }
             return split;
             /**************独自**********************/
